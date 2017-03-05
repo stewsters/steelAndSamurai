@@ -2,54 +2,41 @@ package com.steel.mapgen.map;
 
 public enum BiomeType {
 
-    RIVER(false, '~', SColor.ALICE_BLUE, true),
+    RIVER(false, true),
 
-    OCEAN_ABYSSAL(false, '~', SColor.DARK_BLUE, true),
-    OCEAN_DEEP(false, '~', SColor.BLUE, true),
-    OCEAN_SHALLOW(false, '~', SColor.LIGHT_BLUE, true),
+    OCEAN_ABYSSAL(false, true),
+    OCEAN_DEEP(false, true),
+    OCEAN_SHALLOW(false, true),
 
-    BEACH(false, '.', SColor.YELLOW),
+    SEA_ICE(false, false),
 
-    SCORCHED(false, '.', SColor.BROWN),
-    BARE(false, '.', SColor.DARK_BROWN),
-    TUNDRA(false, ',', SColor.LIGHT_GRAY),
+    BEACH(false, false),
+    SCORCHED(false, false),
+    BARE(false, false),
 
-    SNOW(false, '.', SColor.WHITE),
-    SEA_ICE(false, '_', new SColor(0xffffee, "Sea Ice")),
+    TUNDRA(false, false),
+    SNOW(false, false),
 
-    SHRUBLAND(false, ';', SColor.BURNT_SIENNA),
-    TAIGA(false, 'i', SColor.DARK_GREEN),
+    SHRUBLAND(false, false),
+    TAIGA(false, false),
 
-    TEMPERATE_DESERT(false, 'd', SColor.RED_BEAN),
-    TEMPERATE_DECIDUOUS_FOREST(false, 'D', SColor.GREEN_TEA_DYE),
-    TEMPERATE_RAIN_FOREST(false, 'T', SColor.GREEN_BAMBOO),
+    TEMPERATE_DESERT(false, false),
+    TEMPERATE_DECIDUOUS_FOREST(false, false),
+    TEMPERATE_RAIN_FOREST(false, false),
 
 
-    SUBTROPICAL_DESERT(false, 'd', SColor.NAVAJO_WHITE),
-    GRASSLAND(false, ':', SColor.YELLOW_GREEN),
-    TROPICAL_SEASONAL_FOREST(false, 'S', SColor.GREEN_BAMBOO),
-    TROPICAL_RAIN_FOREST(false, 'T', SColor.DARK_GREEN);
+    SUBTROPICAL_DESERT(false, false),
+    GRASSLAND(false, false),
+    TROPICAL_SEASONAL_FOREST(false, false),
+    TROPICAL_RAIN_FOREST(false, false);
 
 
     public final boolean blocks;
-    public final SColor color;
-    public final SColor darkColor;
-    public final SColor brightColor;
+    public final boolean water;
 
-    public final char character;
-    public boolean water = false;
-
-    BiomeType(boolean blocks, char character, SColor color) {
-        this(blocks, character, color, false);
-    }
-
-    BiomeType(boolean blocks, char character, SColor color, boolean water) {
+    BiomeType(boolean blocks, boolean water) {
         this.blocks = blocks;
-        this.character = character;
-        this.color = color;
         this.water = water;
-        this.darkColor = new SColor(Math.max(color.getRed() - 20, 0), Math.max(color.getGreen() - 20, 0), Math.max(color.getBlue() - 20, 0));
-        this.brightColor = new SColor(Math.min(color.getRed() + 20, 255), Math.min(color.getGreen() + 20, 255), Math.min(color.getBlue() + 20, 255));
     }
 
     // Tree Line - highest survivable trees

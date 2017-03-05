@@ -37,19 +37,19 @@ class GenerationScreen implements Screen {
             int ySize = 16;
             OverWorld overWorld = new OverWorld(xSize, ySize);
 
-            lastStep += "\nStarting Elevation..."
+            lastStep += "\nStarting Elevation... "
 
             worldGenerator.generateElevation(overWorld);
 
-            lastStep += "Elevation Finished.\nDropping Edges..."
+            lastStep += "Elevation Finished.\nDropping Edges... "
             worldGenerator.dropEdges(overWorld);
-            lastStep += "Edges Dropped.\nGenerating Continents..."
+            lastStep += "Edges Dropped.\nGenerating Continents... "
 
             worldGenerator.generateContinents(overWorld);
-            lastStep += "Continents Genereated,\nPopulating Settlements"
+            lastStep += "Continents Genereated.\nPopulating Settlements... "
 
             worldGenerator.populateSettlements(overWorld);
-            lastStep += "Settlements Populated.\nExpanding Realms"
+            lastStep += "Settlements Populated.\nExpanding Realms... "
 
             //We can do this, but it takes forever
             // worldGenerator.createRoadNetwork(overWorld);
@@ -77,10 +77,10 @@ class GenerationScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        game.largeFont.draw(game.batch, "Generating", 100, 200);
+        game.largeFont.draw(game.batch, "Generating", 100, 330);
 
         lastStep.split("\n").eachWithIndex { String line, int i ->
-            game.largeFont.draw(game.batch, line, 100, 200 - (i * 12));
+            game.largeFont.draw(game.batch, line, 100, 300 - (i * 16));
         }
 
         game.batch.end();
