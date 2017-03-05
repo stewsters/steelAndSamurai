@@ -2,7 +2,9 @@ package com.steel.screens
 
 import com.badlogic.gdx.Screen
 import com.steel.SteelSamuraiGame
+import groovy.transform.CompileStatic
 
+@CompileStatic
 class BattleScreen implements Screen {
     final SteelSamuraiGame game
 

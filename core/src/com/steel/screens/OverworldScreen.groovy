@@ -2,7 +2,9 @@ package com.steel.screens
 
 import com.badlogic.gdx.Screen
 import com.steel.SteelSamuraiGame
+import groovy.transform.CompileStatic
 
+@CompileStatic
 class OverworldScreen implements Screen {
     final SteelSamuraiGame game
 
@@ -17,6 +19,7 @@ class OverworldScreen implements Screen {
 
     @Override
     void render(float delta) {
+        // Render the game world
 
     }
 

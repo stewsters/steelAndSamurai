@@ -10,24 +10,24 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 public class SteelSamuraiGame extends Game {
+
+    // The game can be accessed by any of the screens, so anything that you
+    // may need in multiple locations can go here
     SpriteBatch batch
     BitmapFont font
+    BitmapFont largeFont
     SamuraiNameGen nameGen
 
     @Override
     public void create() {
         batch = new SpriteBatch()
         font = new BitmapFont();
+        largeFont = new BitmapFont(); // TODO: we need a large title font
+
         nameGen = new SamuraiNameGen()
         nameGen.init(Gdx.files.internal('samuraiNames.txt').file())
 
         this.setScreen(new MainMenuScreen(this))
-
-        // Testing samurai name generation
-
-//        10.times {
-//            Gdx.app.log this.class.name, nameGen.gen()
-//        }
 
     }
 
@@ -40,5 +40,6 @@ public class SteelSamuraiGame extends Game {
     public void dispose() {
         batch.dispose()
         font.dispose()
+        largeFont.dispose()
     }
 }
