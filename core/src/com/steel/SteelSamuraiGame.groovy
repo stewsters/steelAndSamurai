@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.steel.mapgen.map.overworld.OverWorld
 import com.steel.screens.MainMenuScreen
 import com.steel.utils.SamuraiNameGen
 import groovy.transform.CompileStatic
@@ -17,6 +18,7 @@ public class SteelSamuraiGame extends Game {
     BitmapFont font
     BitmapFont largeFont
     SamuraiNameGen nameGen
+    OverWorld overWorld = null
 
     @Override
     public void create() {
