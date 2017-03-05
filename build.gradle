@@ -26,14 +26,14 @@ allprojects {
     repositories {
         mavenLocal()
         mavenCentral()
+        jcenter()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
     }
 }
 
 project(":desktop") {
-    apply plugin: "java"
-
+    apply plugin: "groovy"
 
     dependencies {
         compile project(":core")
@@ -45,12 +45,13 @@ project(":desktop") {
 }
 
 project(":core") {
-    apply plugin: "java"
-
+    apply plugin: "groovy"
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+        compile 'com.stewsters.util:stewsters-util:0.17'
+        compile 'org.codehaus.groovy:groovy-all:2.4.8'
     }
 }
 
