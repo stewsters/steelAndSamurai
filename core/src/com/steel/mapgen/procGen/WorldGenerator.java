@@ -1,10 +1,9 @@
 package com.steel.mapgen.procGen;
 
 import com.steel.mapgen.game.Settlement;
-import com.steel.mapgen.map.BiomeType;
+import com.steel.mapgen.map.overworld.BiomeType;
 import com.steel.mapgen.map.overworld.OverWorld;
 import com.steel.mapgen.map.overworld.OverWorldChunk;
-import com.stewsters.util.math.Facing2d;
 import com.stewsters.util.math.MatUtils;
 import com.stewsters.util.math.Point2i;
 import com.stewsters.util.noise.OpenSimplexNoise;
@@ -353,7 +352,7 @@ public class WorldGenerator {
 
                                 float nextCost = distance[p.x][p.y] + 1f + next.getChebyshevDistance(p) / 100f;
 //                                + overWorld.getElevation(p.x, p.y)
-                                if( nextCost < distance[next.x][next.y] ){
+                                if (nextCost < distance[next.x][next.y]) {
                                     distance[next.x][next.y] = nextCost;
                                 }
                             });

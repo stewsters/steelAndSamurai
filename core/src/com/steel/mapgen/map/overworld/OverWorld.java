@@ -2,7 +2,6 @@ package com.steel.mapgen.map.overworld;
 
 
 import com.steel.mapgen.game.Settlement;
-import com.steel.mapgen.map.BiomeType;
 import com.stewsters.util.pathing.twoDimention.shared.TileBasedMap2d;
 
 

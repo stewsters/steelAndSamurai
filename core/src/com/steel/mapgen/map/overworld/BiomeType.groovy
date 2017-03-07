@@ -1,55 +1,53 @@
-package com.steel.mapgen.map;
+package com.steel.mapgen.map.overworld;
 
+import com.badlogic.gdx.graphics.Color
+import groovy.transform.CompileStatic;
+
+@CompileStatic
 public enum BiomeType {
 
-    RIVER(false, true),
+    VILLIAGE(false, false, Color.BROWN),
+    FIELD(false, false, Color.GOLDENROD),
 
-    OCEAN_ABYSSAL(false, true),
-    OCEAN_DEEP(false, true),
-    OCEAN_SHALLOW(false, true),
+    TEMPLE(false, false, Color.FIREBRICK),
+    CITY(false, false, Color.GOLD),
+    CASTLE(false, false, Color.WHITE),
 
-    SEA_ICE(false, false),
+    MOUNTAIN(true, false, Color.BLUE),
+    GRASSLAND(false, false, Color.GREEN),
 
-    BEACH(false, false),
-    SCORCHED(false, false),
-    BARE(false, false),
+    FOREST(false, false, Color.FOREST),
+    DEEP_FOREST(true, false, Color.FOREST, Color.BLACK),
+    BAMBOO(false, false, Color.GREEN),
 
-    TUNDRA(false, false),
-    SNOW(false, false),
-
-    SHRUBLAND(false, false),
-    TAIGA(false, false),
-
-    TEMPERATE_DESERT(false, false),
-    TEMPERATE_DECIDUOUS_FOREST(false, false),
-    TEMPERATE_RAIN_FOREST(false, false),
-
-
-    SUBTROPICAL_DESERT(false, false),
-    GRASSLAND(false, false),
-    TROPICAL_SEASONAL_FOREST(false, false),
-    TROPICAL_RAIN_FOREST(false, false);
+    OCEAN(true, true, Color.BLUE);
 
 
     public final boolean blocks;
     public final boolean water;
 
-    BiomeType(boolean blocks, boolean water) {
+    public final Color color;
+    public final Color background;
+
+    BiomeType(boolean blocks, boolean water, Color color, Color background = null) {
         this.blocks = blocks;
         this.water = water;
+        this.color = color;
+
+        this.background = background ?: new Color((float)(color.r * 0.9f), (float)(color.g * 0.9f), (float)(color.b * 0.9f), 1f);
     }
 
     // Tree Line - highest survivable trees
     // 4000 near the equator, 2000 near the poles
     // timberline - Highest canopy - forest
     //   Simplified biome chart: http://imgur.com/kM8b5Zq
-    public static BiomeType biome(double e, double t, double p) {
+    public static BiomeType biome(double e, double t, double s) {
 
-        if (e < 0.0 && t < 0.0) return SEA_ICE;
+        if (e < 0.0) return OCEAN;
 
-        if (e < -0.75) return OCEAN_ABYSSAL;
-        if (e < -0.05) return OCEAN_DEEP;
-        if (e < 0.0) return OCEAN_SHALLOW;
+        if (e > 0.8 || s > 0.5) {
+            return MOUNTAIN;
+        }
 
         if (t < 0) return SNOW;
         if (e > 0.7) { // Above Treeline

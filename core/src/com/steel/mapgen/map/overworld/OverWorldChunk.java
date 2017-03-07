@@ -2,9 +2,8 @@ package com.steel.mapgen.map.overworld;
 
 
 import com.steel.mapgen.game.Settlement;
-import com.steel.mapgen.map.BiomeType;
 
-import static com.steel.mapgen.map.BiomeType.RIVER;
+import static com.steel.mapgen.map.overworld.BiomeType.RIVER;
 
 public class OverWorldChunk {
 
