@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.steel.mapgen.map.overworld.OverWorld
 import com.steel.screens.MainMenuScreen
 import com.steel.utils.SamuraiNameGen
+import com.steel.utils.TextureManager
 import groovy.transform.CompileStatic
 
 @CompileStatic
@@ -18,6 +19,7 @@ public class SteelSamuraiGame extends Game {
     BitmapFont font
     BitmapFont largeFont
     SamuraiNameGen nameGen
+    TextureManager textureManager;
     OverWorld overWorld = null
 
     @Override
@@ -28,6 +30,8 @@ public class SteelSamuraiGame extends Game {
 
         nameGen = new SamuraiNameGen()
         nameGen.init(Gdx.files.internal('samuraiNames.txt').file())
+        textureManager = new TextureManager()
+        textureManager.init()
 
         this.setScreen(new MainMenuScreen(this))
 
@@ -43,5 +47,6 @@ public class SteelSamuraiGame extends Game {
         batch.dispose()
         font.dispose()
         largeFont.dispose()
+        textureManager.destroy()
     }
 }

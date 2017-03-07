@@ -1,6 +1,7 @@
 package com.steel.mapgen.map.overworld;
 
 import com.badlogic.gdx.graphics.Color
+import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import groovy.transform.CompileStatic;
 
 @CompileStatic
@@ -28,6 +29,7 @@ public enum BiomeType {
 
     public final Color color;
     public final Color background;
+    public TextureAtlas texture
 
     BiomeType(boolean blocks, boolean water, Color color, Color background = null) {
         this.blocks = blocks;
