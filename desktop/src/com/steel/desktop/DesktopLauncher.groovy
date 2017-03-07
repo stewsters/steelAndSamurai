@@ -8,6 +8,8 @@ import groovy.transform.CompileStatic
 @CompileStatic
 public class DesktopLauncher {
     public static void main(String[] arg) {
+        ImagePacker.run();
+
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration()
         new LwjglApplication(new SteelSamuraiGame(), config)
     }
