@@ -5,6 +5,8 @@ import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.steel.SteelSamuraiGame
+import com.steel.mapgen.map.overworld.OverWorld
+import com.steel.mapgen.procGen.WorldGenerator
 import groovy.transform.CompileStatic
 
 import java.util.concurrent.ExecutorService
@@ -19,18 +21,44 @@ class GenerationScreen implements Screen {
     ExecutorService executor
     Future future
 
+    WorldGenerator worldGenerator
+
     GenerationScreen(SteelSamuraiGame game) {
         this.game = game
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
         lastStep = "Starting"
 
+        worldGenerator = new WorldGenerator()
         executor = Executors.newFixedThreadPool(1);
 
         future = executor.submit({
-            lastStep = "Started"
+            int xSize = 32;
+            int ySize = 16;
+            OverWorld overWorld = new OverWorld(xSize, ySize);
 
-            return ;
+            lastStep += "\nStarting Elevation... "
+
+            worldGenerator.generateElevation(overWorld);
+
+            lastStep += "Elevation Finished.\nDropping Edges... "
+            worldGenerator.dropEdges(overWorld);
+            lastStep += "Edges Dropped.\nGenerating Continents... "
+
+            worldGenerator.generateContinents(overWorld);
+            lastStep += "Continents Genereated.\nPopulating Settlements... "
+
+            worldGenerator.populateSettlements(overWorld);
+            lastStep += "Settlements Populated.\nExpanding Realms... "
+
+            //We can do this, but it takes forever
+            // worldGenerator.createRoadNetwork(overWorld);
+            // lastStep = "Generating Roads"
+
+            worldGenerator.expandRealms(overWorld);
+            lastStep += "Realms Expanded.\nAll done."
+
+            return overWorld;
         });
 
     }
@@ -49,22 +77,20 @@ class GenerationScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        game.largeFont.draw(game.batch, "Generating", 100, 150);
-        game.largeFont.draw(game.batch, lastStep, 100, 100);
+        game.largeFont.draw(game.batch, "Generating", 100, 330);
+
+        lastStep.split("\n").eachWithIndex { String line, int i ->
+            game.largeFont.draw(game.batch, line, 100, 300 - (i * 16));
+        }
+
         game.batch.end();
 
-        if(future.isDone()){
-
+        if (future.isDone()) {
+            game.overWorld = future.get()
             game.setScreen(new OverworldScreen(game))
             dispose()
         }
 
-//        if (input.isButtonPressed(Input.Keys.N)) {
-//            game.setScreen(new GenerationScreen(game))
-//            dispose()
-//        } else if (input.isButtonPressed(Input.Keys.ESCAPE)) {
-//            Gdx.app.exit()
-//        }
     }
 
     @Override
