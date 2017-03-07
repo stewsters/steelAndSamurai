@@ -58,7 +58,7 @@ public class OverWorld implements TileBasedMap2d {
     public BiomeType getTileType(int globalX, int globalY) {
         OverWorldChunk chunk = loadChunk(getChunkCoord(globalX), getChunkCoord(globalY));
         if (chunk == null)
-            return BiomeType.OCEAN_ABYSSAL;
+            return BiomeType.OCEAN;
 
         return chunk.getTileType(getPrecise(globalX), getPrecise(globalY));
     }

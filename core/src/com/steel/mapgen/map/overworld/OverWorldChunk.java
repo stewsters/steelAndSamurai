@@ -3,7 +3,7 @@ package com.steel.mapgen.map.overworld;
 
 import com.steel.mapgen.game.Settlement;
 
-import static com.steel.mapgen.map.overworld.BiomeType.RIVER;
+import static com.steel.mapgen.map.overworld.BiomeType.OCEAN;
 
 public class OverWorldChunk {
 
@@ -71,7 +71,7 @@ public class OverWorldChunk {
     public BiomeType getTileType(int pX, int pY) {
 
         if (river[pX][pY])
-            return RIVER;
+            return OCEAN;
         return BiomeType.biome(elevation[pX][pY], temperature[pX][pY], precipitation[pX][pY]);
     }
 
