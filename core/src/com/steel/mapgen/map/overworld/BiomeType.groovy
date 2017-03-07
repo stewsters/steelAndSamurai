@@ -1,7 +1,7 @@
 package com.steel.mapgen.map.overworld;
 
 import com.badlogic.gdx.graphics.Color
-import com.badlogic.gdx.graphics.g2d.TextureAtlas
+import com.badlogic.gdx.graphics.g2d.TextureRegion
 import groovy.transform.CompileStatic;
 
 @CompileStatic
@@ -21,22 +21,22 @@ public enum BiomeType {
     DEEP_FOREST(true, false, Color.FOREST, Color.BLACK),
     BAMBOO(false, false, Color.GREEN),
 
-    OCEAN(true, true, Color.BLUE);
+    OCEAN(true, true, Color.BLUE)
 
 
-    public final boolean blocks;
-    public final boolean water;
+    public final boolean blocks
+    public final boolean water
 
-    public final Color color;
-    public final Color background;
-    public TextureAtlas texture
+    public final Color color
+    public final Color background
+    public TextureRegion texture
 
     BiomeType(boolean blocks, boolean water, Color color, Color background = null) {
-        this.blocks = blocks;
-        this.water = water;
-        this.color = color;
+        this.blocks = blocks
+        this.water = water
+        this.color = color
 
-        this.background = background ?: new Color((float) (color.r * 0.9f), (float) (color.g * 0.9f), (float) (color.b * 0.9f), 1f);
+        this.background = background ?: new Color((float) (color.r * 0.9f), (float) (color.g * 0.9f), (float) (color.b * 0.9f), 1f)
     }
 
     // Tree Line - highest survivable trees
@@ -45,17 +45,17 @@ public enum BiomeType {
     //   Simplified biome chart: http://imgur.com/kM8b5Zq
     public static BiomeType biome(double elev, double temp, double prec) {
 
-        if (elev < 0.0) return OCEAN;
+        if (elev < 0.0) return OCEAN
 
         if (elev < 0.6) {
-            return GRASSLAND;
+            return GRASSLAND
         }
 
-        return MOUNTAIN;
+        return MOUNTAIN
 
     }
 
     public byte id() {
-        return (byte) ordinal();
+        return (byte) ordinal()
     }
 }

@@ -17,12 +17,16 @@ class TextureManager {
         atlas = new TextureAtlas(fh);
 
         TileType.values().each {
-            it.texture = atlas.findRegion("battlemap/" + it.name());
+            it.texture = atlas.findRegion("battlemap/" + it.name().toLowerCase());
         }
 
         BiomeType.values().each {
-            it.texture = atlas.findRegion("worldmap/" + it.name());
+            it.texture = atlas.findRegion("worldmap/" + it.name().toLowerCase());
+
+
         }
+
+
 
     }
 

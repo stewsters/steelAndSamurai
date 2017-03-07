@@ -58,7 +58,7 @@ class GenerationScreen implements Screen {
             worldGenerator.expandRealms(overWorld);
             lastStep += "Realms Expanded.\nAll done."
 
-            return overWorld;
+            game.overWorld = overWorld;
         });
 
     }
@@ -86,7 +86,6 @@ class GenerationScreen implements Screen {
         game.batch.end();
 
         if (future.isDone()) {
-            game.overWorld = future.get()
             game.setScreen(new OverworldScreen(game))
             dispose()
         }
