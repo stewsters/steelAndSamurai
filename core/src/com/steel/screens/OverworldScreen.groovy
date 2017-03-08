@@ -49,7 +49,7 @@ class OverworldScreen implements Screen {
 
                 BiomeType biome = game.overWorld.getTileType(xCur, yCur)
                 game.batch.setColor(biome.background)
-                game.batch.draw(game.textureManager.background, x * 16, y * 16, 16, 16)
+                game.batch.draw(game.textureManager.background, x * 16, y * 16, 17, 17)
 
                 if (biome.texture) {
                     game.batch.setColor(
@@ -58,7 +58,7 @@ class OverworldScreen implements Screen {
                             biome.color.b * elevation,
                             1
                     )
-                    game.batch.draw(biome.texture, x * 16, y * 16, 16, 16)
+                    game.batch.draw(biome.texture, x * 16, y * 16, 17, 17)
                 } else {
                     Gdx.app.log("Missing", biome.name().toLowerCase())
                 }
