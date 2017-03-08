@@ -14,7 +14,7 @@ public enum BiomeType {
     CITY(false, false, Color.GOLD),
     CASTLE(false, false, Color.WHITE),
 
-    MOUNTAIN(true, false, Color.BLUE),
+    MOUNTAIN(true, false, Color.ORANGE),
     GRASSLAND(false, false, Color.GREEN),
 
     FOREST(false, false, Color.FOREST),
@@ -47,10 +47,15 @@ public enum BiomeType {
 
         if (elev < 0.0) return OCEAN
 
-        if (elev < 0.6) {
+        if (elev < 0.3) {
             return GRASSLAND
         }
-
+        if (elev < 0.4) {
+            return FOREST
+        }
+        if (elev < 0.5) {
+            return DEEP_FOREST
+        }
         return MOUNTAIN
 
     }

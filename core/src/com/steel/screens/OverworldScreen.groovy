@@ -36,16 +36,28 @@ class OverworldScreen implements Screen {
         camera.update()
         game.batch.setProjectionMatrix(camera.combined)
 
+        game.batch.enableBlending();
         game.batch.begin()
 
         for (int x = 0; x < 40; x++) {
             for (int y = 0; y < 30; y++) {
-                int xCur = xCenter+x
-                int yCur = yCenter+y
+                int xCur = xCenter + x
+                int yCur = yCenter + y
+
+                float elevation = 1 - Math.abs(game.overWorld.getElevation(xCur, yCur));
+
 
                 BiomeType biome = game.overWorld.getTileType(xCur, yCur)
+                game.batch.setColor(biome.background)
+                game.batch.draw(game.textureManager.background, x * 16, y * 16, 16, 16)
+
                 if (biome.texture) {
-                    game.batch.setColor(biome.color)
+                    game.batch.setColor(
+                            biome.color.r * elevation,
+                            biome.color.g * elevation,
+                            biome.color.b * elevation,
+                            1
+                    )
                     game.batch.draw(biome.texture, x * 16, y * 16, 16, 16)
                 } else {
                     Gdx.app.log("Missing", biome.name().toLowerCase())
