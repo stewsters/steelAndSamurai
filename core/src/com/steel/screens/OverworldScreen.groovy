@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.steel.SteelSamuraiGame
+import com.steel.mapgen.game.Daimyo
 import com.steel.mapgen.map.overworld.BiomeType
 import groovy.transform.CompileStatic
 
@@ -63,6 +64,13 @@ class OverworldScreen implements Screen {
                     Gdx.app.log("Missing", biome.name().toLowerCase())
                 }
             }
+        }
+        for (Daimyo d : Daimyo.daimyos) {
+            int xCur = d.pos.x - xCenter
+            int yCur = d.pos.y - yCenter
+            game.batch.setColor(d.color)
+            game.batch.draw(game.textureManager.daimyo, xCur * 16, yCur * 16, 17, 17)
+
         }
 
         game.batch.end()

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Daimyo {
 
     private static int topId = 0;
-    private static ArrayList<Daimyo> daimyos = new ArrayList<Daimyo>();
+    public static ArrayList<Daimyo> daimyos = new ArrayList<Daimyo>();
 
     public int id;
     public String name;
@@ -22,9 +22,9 @@ public class Daimyo {
         this.pos = point2i;
         this.name = name;
         this.color = new Color(
-                MatUtils.getFloatInRange(0.1f,1),
-                MatUtils.getFloatInRange(0.1f,1),
-                MatUtils.getFloatInRange(0.1f,1),
+                MatUtils.getFloatInRange(0.1f, 1),
+                MatUtils.getFloatInRange(0.1f, 1),
+                MatUtils.getFloatInRange(0.1f, 1),
                 1);
     }
 

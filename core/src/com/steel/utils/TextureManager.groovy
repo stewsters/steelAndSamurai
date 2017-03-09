@@ -10,7 +10,8 @@ import com.steel.mapgen.map.overworld.BiomeType
 class TextureManager {
 
     TextureAtlas atlas
-    TextureRegion background
+     TextureRegion background
+    TextureRegion daimyo
 
     public void init() {
 
@@ -27,7 +28,7 @@ class TextureManager {
         }
 
         background = atlas.findRegion("background")
-
+        daimyo = atlas.findRegion("characters/daimyo")
     }
 
     public void destroy() {
