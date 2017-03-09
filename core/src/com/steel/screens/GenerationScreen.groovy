@@ -5,6 +5,8 @@ import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.steel.SteelSamuraiGame
+import com.steel.mapgen.game.Daimyo
+import com.steel.mapgen.game.Settlement
 import com.steel.mapgen.map.overworld.OverWorld
 import com.steel.mapgen.procGen.WorldGenerator
 import groovy.transform.CompileStatic
@@ -56,9 +58,15 @@ class GenerationScreen implements Screen {
             // lastStep = "Generating Roads"
 
             worldGenerator.expandRealms(overWorld);
-            lastStep += "Realms Expanded.\nAll done."
+            lastStep += "Realms Expanded.\nAdding Armies... "
 
             game.overWorld = overWorld;
+
+            Settlement.settlements.each {
+                it.ruler = Daimyo.build(it.pos.x, it.pos.y, game.nameGen.gen())
+            }
+
+            lastStep += "Added.\nDone."
         });
 
     }

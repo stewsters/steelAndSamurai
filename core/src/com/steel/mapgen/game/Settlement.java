@@ -12,6 +12,7 @@ public class Settlement {
     public int id;
     public Point2i pos;
     public int population;
+    public Daimyo ruler;
 
     private Settlement(int id, Point2i point2i, int pop) {
         this.id = id;
