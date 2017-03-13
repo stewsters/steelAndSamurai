@@ -15,6 +15,9 @@ class OverworldScreen implements Screen {
     final SteelSamuraiGame game
     OrthographicCamera camera
 
+    int xCenter = 500;
+    int yCenter = 500;
+
     OverworldScreen(SteelSamuraiGame game) {
         this.game = game
         camera = new OrthographicCamera()
@@ -25,8 +28,6 @@ class OverworldScreen implements Screen {
     void show() {
 
     }
-    int xCenter = 500;
-    int yCenter = 500;
 
     @Override
     void render(float delta) {
