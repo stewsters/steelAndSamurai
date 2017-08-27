@@ -51,7 +51,7 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         compile 'com.stewsters.util:stewsters-util:0.17'
-        compile 'org.codehaus.groovy:groovy-all:2.4.8'
+        compile 'org.codehaus.groovy:groovy-all:2.4.12'
     }
 }
 
